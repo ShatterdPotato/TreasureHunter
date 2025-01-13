@@ -133,7 +133,7 @@ public class Hunter {
                 printableKit += item + space;
             }
         }
-        return printableKit;
+        return Colors.PURPLE + printableKit + Colors.RESET;
     }
 
     /**

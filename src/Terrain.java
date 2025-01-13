@@ -15,7 +15,7 @@ public class Terrain {
      * @param item The item needed in order to cross the zone.
      */
     public Terrain(String name, String item) {
-        terrainName = name;
+        terrainName = Colors.CYAN + name + Colors.RESET;
         neededItem = item.toLowerCase();
     }
 
