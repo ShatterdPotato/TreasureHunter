@@ -17,7 +17,7 @@ public class Hunter {
      * @param startingGold The gold the hunter starts with.
      */
     public Hunter(String hunterName, int startingGold) {
-        this.hunterName = hunterName;
+        this.hunterName = Colors.GREEN + hunterName + Colors.RESET;
         kit = new String[5]; // only 5 possible items can be stored in kit
         gold = startingGold;
     }
@@ -140,7 +140,7 @@ public class Hunter {
      * @return A string representation of the hunter.
      */
     public String infoString() {
-        String str = hunterName + " has " + gold + " gold";
+        String str = hunterName + " has " + Colors.formatGold(gold + " gold") ;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }

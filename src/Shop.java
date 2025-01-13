@@ -50,7 +50,7 @@ public class Shop {
             if (cost == 0) {
                 System.out.println("We ain't got none of those.");
             } else {
-                System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
+                System.out.print("It'll cost you " +Colors.formatGold(cost + " gold. ") + "Buy it (y/n)? ");
                 String option = SCANNER.nextLine().toLowerCase();
                 if (option.equals("y")) {
                     buyItem(item);
@@ -64,7 +64,7 @@ public class Shop {
             if (cost == 0) {
                 System.out.println("We don't want none of those.");
             } else {
-                System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
+                System.out.print("It'll get you " + Colors.formatGold( cost + " gold. ") + "Sell it (y/n)? ");
                 String option = SCANNER.nextLine().toLowerCase();
                 if (option.equals("y")) {
                     sellItem(item);
@@ -81,11 +81,11 @@ public class Shop {
      * @return the string representing the shop's items available for purchase and their prices.
      */
     public String inventory() {
-        String str = "Water: " + WATER_COST + " gold\n";
-        str += "Rope: " + ROPE_COST + " gold\n";
-        str += "Machete: " + MACHETE_COST + " gold\n";
-        str += "Horse: " + HORSE_COST + " gold\n";
-        str += "Boat: " + BOAT_COST + " gold\n";
+        String str = "Water: " + Colors.formatGold(WATER_COST + " gold\n");
+        str += "Rope: " + Colors.formatGold( ROPE_COST + " gold\n");
+        str += "Machete: " + Colors.formatGold(MACHETE_COST + " gold\n");
+        str += "Horse: " + Colors.formatGold(HORSE_COST + " gold\n");
+        str += "Boat: " + Colors.formatGold(BOAT_COST + " gold\n");
         return str;
     }
 
