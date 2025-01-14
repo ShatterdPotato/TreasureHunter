@@ -113,7 +113,15 @@ public class Town {
             printMessage += Colors.RESET;
         }
     }
-
+    public boolean checkGameOver() {
+        // Check if game is over due to negative gold
+        if (hunter.getGold() < 0) {
+            System.out.println(Colors.RED + "GAME OVER!");
+            System.out.println("You lost a brawl and couldn't pay your debt." + Colors.RESET);
+            return true;
+        }
+        return false;
+    }
     public String infoString() {
         return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
     }

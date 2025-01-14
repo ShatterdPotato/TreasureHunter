@@ -38,7 +38,6 @@ public class TreasureHunter {
         enterTown();
         showMenu();
     }
-
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
@@ -60,6 +59,12 @@ public class TreasureHunter {
         if (hard.equals("test")) {
             testMode = true;
             shop.setupTestMode(hunter);
+        }
+        else if (hard.equals("test lose")) {
+            testMode = true;
+             // Start with low gold for testing
+            hunter.changeGold(-15); // Results in 5 gold total
+            hardMode = true; // Higher chance of losing brawls
         }
     }
 
@@ -101,7 +106,7 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-        while (!choice.equals("x")) {
+        while (!choice.equals("x") && !currentTown.checkGameOver()) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");

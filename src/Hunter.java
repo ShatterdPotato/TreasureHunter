@@ -34,9 +34,6 @@ public class Hunter {
      */
     public void changeGold(int modifier) {
         gold += modifier;
-        if (gold < 0) {
-            gold = 0;
-        }
     }
 
     /**
@@ -54,6 +51,7 @@ public class Hunter {
         addItem(item);
         return true;
     }
+
 
     /**
      * The Hunter is selling an item to a shop for gold.<p>
@@ -93,7 +91,7 @@ public class Hunter {
      * @param item The item to be added to the kit.
      * @return true if the item is not in the kit and has been added.
      */
-    private boolean addItem(String item) {
+    public boolean addItem(String item) {
         if (!hasItemInKit(item)) {
             int idx = emptyPositionInKit();
             kit[idx] = item;
@@ -189,6 +187,10 @@ public class Hunter {
                 return i;
             }
         }
-        return -1;
+        return 0;
+    }
+
+    public int getGold() {
+        return gold;
     }
 }

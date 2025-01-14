@@ -33,19 +33,20 @@ public class Shop {
     }
     public void setupTestMode(Hunter hunter) {
         customer = hunter;
+        // Give hunter enough gold to have 100 after buying everything
+        hunter.changeGold(80);
         // Add all items
-        buyItem("water");
-        buyItem("rope");
-        buyItem("machete");
-        System.out.println();
-        buyItem("horse");
-        buyItem("boat");
+        hunter.addItem("water");
+        hunter.addItem("rope");
+        hunter.addItem("machete");
+        hunter.addItem("horse");
+        hunter.addItem("boat");
+        hunter.addItem("boots");
 
         // Calculate total cost of all items
         int totalCost = WATER_COST + ROPE_COST + MACHETE_COST + HORSE_COST + BOAT_COST;
+        System.out.println(totalCost);
 
-        // Give hunter enough gold to have 100 after buying everything
-        hunter.changeGold(92);
     }
     /**
      * Method for entering the shop.
