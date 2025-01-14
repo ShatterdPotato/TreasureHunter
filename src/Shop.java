@@ -13,6 +13,7 @@ public class Shop {
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    private static final int BOOT_COST = 10;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -101,6 +102,7 @@ public class Shop {
         str += "Machete: " + Colors.formatGold(MACHETE_COST + " gold\n");
         str += "Horse: " + Colors.formatGold(HORSE_COST + " gold\n");
         str += "Boat: " + Colors.formatGold(BOAT_COST + " gold\n");
+        str += "Boots: " + Colors.formatGold(BOOT_COST + " gold\n");
         return str;
     }
 
@@ -154,18 +156,21 @@ public class Shop {
      * @return The cost of the item or 0 if the item is not found.
      */
     public int getCostOfItem(String item) {
-        if (item.equals("water")) {
-            return WATER_COST;
-        } else if (item.equals("rope")) {
-            return ROPE_COST;
-        } else if (item.equals("machete")) {
-            return MACHETE_COST;
-        } else if (item.equals("horse")) {
-            return HORSE_COST;
-        } else if (item.equals("boat")) {
-            return BOAT_COST;
-        } else {
-            return 0;
+        switch (item) {
+            case "water":
+                return WATER_COST;
+            case "rope":
+                return ROPE_COST;
+            case "machete":
+                return MACHETE_COST;
+            case "horse":
+                return HORSE_COST;
+            case "boat":
+                return BOAT_COST;
+            case "boots":
+                return BOOT_COST;
+            default:
+                return 0;
         }
     }
 
