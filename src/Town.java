@@ -69,7 +69,7 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += breakItem(item);
             }
-            hasBeenDug = falses;
+            hasBeenDug = false;
             return true;
         }
 
