@@ -59,12 +59,7 @@ public class TreasureHunter {
         }
         if (hard.equals("test")) {
             testMode = true;
-            hunter.changeGold(124); // 80 for 100 starting and 44 from buying
-            shop.buyItem("Water");
-            shop.buyItem("Rope");
-            shop.buyItem("Machete");
-            shop.buyItem("Horse");
-            shop.buyItem("Boat");
+            shop.setupTestMode(hunter);
         }
     }
 

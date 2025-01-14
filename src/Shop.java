@@ -30,7 +30,22 @@ public class Shop {
         this.markdown = markdown;
         customer = null; // customer is set in the enter method
     }
+    public void setupTestMode(Hunter hunter) {
+        customer = hunter;
+        // Add all items
+        buyItem("water");
+        buyItem("rope");
+        buyItem("machete");
+        System.out.println();
+        buyItem("horse");
+        buyItem("boat");
 
+        // Calculate total cost of all items
+        int totalCost = WATER_COST + ROPE_COST + MACHETE_COST + HORSE_COST + BOAT_COST;
+
+        // Give hunter enough gold to have 100 after buying everything
+        hunter.changeGold(92);
+    }
     /**
      * Method for entering the shop.
      *
