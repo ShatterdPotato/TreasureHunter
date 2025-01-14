@@ -45,7 +45,7 @@ public class Shop {
 
         // Calculate total cost of all items
         int totalCost = WATER_COST + ROPE_COST + MACHETE_COST + HORSE_COST + BOAT_COST;
-        System.out.println(totalCost);
+
 
     }
     /**

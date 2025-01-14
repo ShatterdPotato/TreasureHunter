@@ -66,7 +66,7 @@ public class Town {
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, your " + item + " broke.";
+                printMessage += breakItem(item);
             }
             return true;
         }
@@ -157,5 +157,24 @@ public class Town {
     private boolean checkItemBreak() {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    private String breakItem(String item) {
+        switch (item) {
+            case "water":
+                return "Seems like you drank the last drop of your water. Should've bought more!";
+            case "rope":
+                return Colors.RED + "SNAP!" + Colors.RESET + "Looks like your rope finally gave out. Better restock!";
+            case "machete":
+                return "You accidentally dropped your machete into a cavern. Looks like you'll need another one!";
+            case "horse":
+                return "You got cornered by a pack of hyenas. You escaped with your life...but not your horse :(";
+            case "boat":
+                return "Just as you reach ashore, you crash into a pile of rocks. Looks like this boat wont be sailing the open seas anymore.";
+            case "boots":
+                return "The soles of your boots gave out and its almost as if you dont even have boots on. Get a new pair!!!";
+            default:
+                return "";
+        }
     }
 }
