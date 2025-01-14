@@ -17,7 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private Shop shop;
     private boolean hardMode;
-    private boolean testMode;
+    private boolean easyMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -27,9 +27,11 @@ public class TreasureHunter {
         currentTown = null;
         hunter = null;
         hardMode = false;
-        testMode = false;
+        easyMode = false;
     }
-
+    public boolean checkEasyMode(){
+        return (easyMode);
+    }
     /**
      * Starts the game; this is the only public method
      */
@@ -51,17 +53,18 @@ public class TreasureHunter {
         hunter = new Hunter(name, 20);
         shop =  new Shop(100); //set to 100 for now
 
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("Which mode? (Easy[e], Normal [n], or Hard [h]): ");
         String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        if (hard.equals("h")) {
             hardMode = true;
         }
         if (hard.equals("test")) {
-            testMode = true;
             shop.setupTestMode(hunter);
         }
+        if (hard.equals("e")) {
+            easyMode = true;
+        }
         else if (hard.equals("test lose")) {
-            testMode = true;
              // Start with low gold for testing
             hunter.changeGold(-15); // Results in 5 gold total
             hardMode = true; // Higher chance of losing brawls
@@ -81,6 +84,11 @@ public class TreasureHunter {
             // and the town is "tougher"
             toughness = 0.75;
         }
+        if (easyMode) {
+            hunter.changeGold(20);
+            markdown = 0;
+            toughness = 1.5;
+        }
 
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
@@ -90,7 +98,7 @@ public class TreasureHunter {
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness);
+        currentTown = new Town(shop, toughness, easyMode);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
