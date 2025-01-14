@@ -11,6 +11,7 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private boolean hasBeenDug;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -68,11 +69,30 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += breakItem(item);
             }
+            hasBeenDug = falses;
             return true;
         }
 
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
+    }
+
+    public void digForGold() {
+        if (!hasBeenDug) {
+            if (hunter.hasItemInKit("shovel")) {
+                hasBeenDug = true;
+                double rand = Math.random();
+                if (rand < .50) {
+                    digResult(true);
+                } else {
+                    digResult(false);
+                }
+            }   else {
+                System.out.println("You don't got no shovel! What're ya gonna do claw yur way to gold?!");
+            }
+        }   else {
+            System.out.println("You've dug this place bone dry!!! Go dig elsewhere!!!");
+        }
     }
 
     /**
@@ -175,6 +195,16 @@ public class Town {
                 return "The soles of your boots gave out and its almost as if you dont even have boots on. Get a new pair!!!";
             default:
                 return "";
+        }
+    }
+
+    private void digResult(boolean struckGold) {
+        if (struckGold) {
+            int goldAmt  = (int) (Math.random() * 20) + 1;
+            System.out.println("You dug up " + Colors.formatGold(goldAmt + " gold!"));
+            hunter.changeGold(goldAmt);
+        }   else {
+            System.out.println("You dug but found only dirt.");
         }
     }
 }

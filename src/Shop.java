@@ -14,6 +14,7 @@ public class Shop {
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
     private static final int BOOT_COST = 10;
+    private static final int SHOVEL_COST = 8;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -42,12 +43,9 @@ public class Shop {
         hunter.addItem("horse");
         hunter.addItem("boat");
         hunter.addItem("boots");
-
-        // Calculate total cost of all items
-        int totalCost = WATER_COST + ROPE_COST + MACHETE_COST + HORSE_COST + BOAT_COST;
-
-
+        hunter.addItem("shovel");
     }
+
     /**
      * Method for entering the shop.
      *
@@ -104,6 +102,7 @@ public class Shop {
         str += "Horse: " + Colors.formatGold(HORSE_COST + " gold\n");
         str += "Boat: " + Colors.formatGold(BOAT_COST + " gold\n");
         str += "Boots: " + Colors.formatGold(BOOT_COST + " gold\n");
+        str += "Shovel: " + Colors.formatGold(SHOVEL_COST + " gold\n");
         return str;
     }
 
@@ -170,6 +169,8 @@ public class Shop {
                 return BOAT_COST;
             case "boots":
                 return BOOT_COST;
+            case "shovel":
+                return SHOVEL_COST;
             default:
                 return 0;
         }
