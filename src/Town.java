@@ -19,7 +19,7 @@ public class Town {
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness, boolean easyMode) {
+    public Town(Shop shop, double toughness) {
         this.shop = shop;
         this.terrain = getNewTerrain();
 
@@ -27,7 +27,6 @@ public class Town {
         // gets called from a client class
         hunter = null;
         printMessage = "";
-        easyMode = false;
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
     }
@@ -175,13 +174,13 @@ public class Town {
      *
      * @return true if the item broke.
      */
-    private boolean checkItemBreak(boolean easyMode) {
-        double rand = Math.random();
-        return (rand < 0.5);
-        this. = easyMode;
-        if (easyMode){
+    private boolean checkItemBreak() {
+        if (TreasureHunter.isEasyMode()){
             return (false);
         }
+        double rand = Math.random();
+        return (rand < 0.5);
+
     }
 
     private String breakItem(String item) {

@@ -17,7 +17,8 @@ public class TreasureHunter {
     private Hunter hunter;
     private Shop shop;
     private boolean hardMode;
-    private boolean easyMode;
+    private static boolean easyMode;
+    private boolean samuraiMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -29,8 +30,13 @@ public class TreasureHunter {
         hardMode = false;
         easyMode = false;
     }
-    public boolean checkEasyMode(){
+
+    public static boolean isEasyMode(){
         return (easyMode);
+    }
+
+    public boolean isSamuraiMode(){
+        return samuraiMode;
     }
     /**
      * Starts the game; this is the only public method
@@ -57,17 +63,16 @@ public class TreasureHunter {
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("h")) {
             hardMode = true;
-        }
-        if (hard.equals("test")) {
+        }   else if (hard.equals("test")) {
             shop.setupTestMode(hunter);
-        }
-        if (hard.equals("e")) {
+        }   else if (hard.equals("e")) {
             easyMode = true;
-        }
-        else if (hard.equals("test lose")) {
+        }   else if (hard.equals("test lose")) {
              // Start with low gold for testing
             hunter.changeGold(-15); // Results in 5 gold total
             hardMode = true; // Higher chance of losing brawls
+        }   else if (hard.equals("s")) {
+            samuraiMode = true;
         }
     }
 
@@ -98,7 +103,7 @@ public class TreasureHunter {
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness, easyMode);
+        currentTown = new Town(shop, toughness);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
