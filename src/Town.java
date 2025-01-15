@@ -132,14 +132,12 @@ public class Town {
                     printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                     hunter.changeGold(-goldDiff);
                 }
-            }
-            else {
-                if ((Math.random()) > noTroubleChance){
-                printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
-                printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RED;
-                hunter.changeGold(goldDiff);
-                }
-                else {
+            }   else {
+                if (Math.random() > noTroubleChance || hunter.hasItemInKit("sword")) {
+                    printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
+                    printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RED;
+                    hunter.changeGold(goldDiff);
+                } else {
                     printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                     printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                     hunter.changeGold(-goldDiff);

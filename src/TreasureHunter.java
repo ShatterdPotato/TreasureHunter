@@ -18,7 +18,7 @@ public class TreasureHunter {
     private Shop shop;
     private boolean hardMode;
     private static boolean easyMode;
-    private boolean samuraiMode;
+    private static boolean samuraiMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -35,9 +35,10 @@ public class TreasureHunter {
         return (easyMode);
     }
 
-    public boolean isSamuraiMode(){
+    public static boolean isSamuraiMode(){
         return samuraiMode;
     }
+
     /**
      * Starts the game; this is the only public method
      */

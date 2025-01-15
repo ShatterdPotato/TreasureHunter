@@ -18,7 +18,11 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = Colors.GREEN + hunterName + Colors.RESET;
-        kit = new String[7]; // only 5 possible items can be stored in kit
+        if (TreasureHunter.isSamuraiMode()){
+            kit = new String[8];
+        } else {
+            kit = new String[7];
+        }
         gold = startingGold;
     }
 

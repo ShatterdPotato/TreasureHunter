@@ -15,6 +15,7 @@ public class Shop {
     private static final int BOAT_COST = 20;
     private static final int BOOT_COST = 10;
     private static final int SHOVEL_COST = 8;
+    private static final int SWORD_COST = 0;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -64,7 +65,7 @@ public class Shop {
             int cost = checkMarketPrice(item, true);
             if (cost == 0) {
                 System.out.println("We ain't got none of those.");
-            } else {
+            }   else {
                 System.out.print("It'll cost you " +Colors.formatGold(cost + " gold. ") + "Buy it (y/n)? ");
                 String option = SCANNER.nextLine().toLowerCase();
                 if (option.equals("y")) {
@@ -103,6 +104,9 @@ public class Shop {
         str += "Boat: " + Colors.formatGold(BOAT_COST + " gold\n");
         str += "Boots: " + Colors.formatGold(BOOT_COST + " gold\n");
         str += "Shovel: " + Colors.formatGold(SHOVEL_COST + " gold\n");
+        if (TreasureHunter.isSamuraiMode()) {
+            str += "Sword: " + Colors.formatGold(SWORD_COST + " gold\n");
+        }
         return str;
     }
 
@@ -171,6 +175,11 @@ public class Shop {
                 return BOOT_COST;
             case "shovel":
                 return SHOVEL_COST;
+            case "sword":
+                if (TreasureHunter.isSamuraiMode()) {
+                    return SWORD_COST;
+                }
+                return 0;
             default:
                 return 0;
         }
