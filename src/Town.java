@@ -134,7 +134,13 @@ public class Town {
                 }
             }   else {
                 if (Math.random() > noTroubleChance || hunter.hasItemInKit("sword")) {
-                    printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
+                    if (hunter.hasItemInKit("sword")) {
+                        printMessage += "Woah is that a sword?! Ok bud, you win, I ain't want no trouble with you.";
+                    }
+                    else {
+                        printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
+
+                    }
                     printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RED;
                     hunter.changeGold(goldDiff);
                 } else {

@@ -63,10 +63,20 @@ public class Shop {
             System.out.print("What're you lookin' to buy? ");
             String item = SCANNER.nextLine().toLowerCase();
             int cost = checkMarketPrice(item, true);
-            if (cost == 0) {
+            if (TreasureHunter.isSamuraiMode() && item.equals("sword")) {
+                System.out.print("It'll cost you " +Colors.formatGold(cost + " gold. ") + "Buy it (y/n)? ");
+                String option = SCANNER.nextLine().toLowerCase();
+                if (option.equals("y")) {
+                    buyItem(item);
+                }
+            }   else if (cost == 0) {
                 System.out.println("We ain't got none of those.");
             }   else {
-                System.out.print("It'll cost you " +Colors.formatGold(cost + " gold. ") + "Buy it (y/n)? ");
+                if (hunter.hasItemInKit("sword")) {
+                    System.out.print("Is that a s-sword?! You know what, its on the house, no cost at all b-bud! (y/n)");
+                }   else {
+                    System.out.print("It'll cost you " + Colors.formatGold(cost + " gold. ") + "Buy it (y/n)? ");
+                }
                 String option = SCANNER.nextLine().toLowerCase();
                 if (option.equals("y")) {
                     buyItem(item);
