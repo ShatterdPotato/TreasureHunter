@@ -91,8 +91,7 @@ public class TreasureHunter {
         }
         if (easyMode) {
             hunter.changeGold(20);
-            markdown = 0;
-            toughness = 1.5;
+            markdown = 1;
         }
 
         // note that we don't need to access the Shop object
