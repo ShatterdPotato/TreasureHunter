@@ -149,6 +149,7 @@ public class TreasureHunter {
             currentTown.enterShop(choice);
         } else if (choice.equals("e")) {
             System.out.println(currentTown.getTerrain().infoString());
+            currentTown.updateLatestNews();
         } else if (choice.equals("m")) {
             if (currentTown.leaveTown()) {
                 // This town is going away so print its news ahead of time.

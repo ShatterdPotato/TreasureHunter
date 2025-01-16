@@ -14,6 +14,7 @@ public class Town {
     private boolean hasBeenDug;
     private  boolean treasureHunted;
     private String townTreasure;
+    private String lastBrawlWon;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -144,11 +145,13 @@ public class Town {
                     printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                     printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RED;
                     hunter.changeGold(goldDiff);
+                    lastBrawlWon = "won";
                 }
                 else {
                     printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                     printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                     hunter.changeGold(-goldDiff);
+                    lastBrawlWon = "lost";
                 }
             }   else {
                 if (Math.random() > noTroubleChance || hunter.hasItemInKit("sword")) {
@@ -161,13 +164,25 @@ public class Town {
                     }
                     printMessage += Colors.YELLOW + "\nYou won the brawl and receive " + goldDiff + " gold." + Colors.RED;
                     hunter.changeGold(goldDiff);
+                    lastBrawlWon = "won";
                 } else {
                     printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                     printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                     hunter.changeGold(-goldDiff);
+                    lastBrawlWon = "lost";
                 }
             }
             printMessage += Colors.RESET;
+        }
+    }
+
+    public void updateLatestNews() {
+        if (lastBrawlWon == null) {
+            printMessage += "";
+        }   else if (lastBrawlWon.equals("won")) {
+            printMessage = "The town carries you with a higher level of respect as you wont the brawl.";
+        }   else if (lastBrawlWon.equals("lost")) {
+            printMessage = "You've become the talk of the town, not for a good reason though because you " + Colors.RED + "lost " + Colors.RESET + "the brawl.";
         }
     }
     public boolean checkGameOver() {
