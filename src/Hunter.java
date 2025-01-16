@@ -144,6 +144,7 @@ public class Hunter {
     public boolean hasTreasureAlready(String treasure) {
         for (String tmpTreasure : treasureInv ) {
             if (treasure.equals(treasureInv)) {
+                System.out.println("Already has " + treasure);
                 return true;
             }
         }
