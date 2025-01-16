@@ -12,6 +12,8 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
     private boolean hasBeenDug;
+    private  boolean treasureHunted;
+    private String townTreasure;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -22,13 +24,14 @@ public class Town {
     public Town(Shop shop, double toughness) {
         this.shop = shop;
         this.terrain = getNewTerrain();
-
+        String treasureOfTheTown = "";
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
         hunter = null;
         printMessage = "";
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        assignTreasure();
     }
 
     public Terrain getTerrain() {
@@ -69,13 +72,28 @@ public class Town {
                 printMessage += breakItem(item);
             }
             hasBeenDug = false;
+            treasureHunted = false;
             return true;
         }
 
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
     }
-
+    public void assignTreasure() {
+        String[] treasures = {"crown", "trophy", "gem", "dust"};
+        this.townTreasure = treasures[(int) (Math.random() * treasures.length)];
+    }
+    public void huntForTreasure() {
+        if (townTreasure != null) {
+            System.out.println("You begin searching for treasure...");
+            System.out.println("Ah ha! You found a " + townTreasure + "!");
+            hunter.addTreasure(townTreasure);
+            printMessage = "You found a " + townTreasure + "!";
+        } else {
+            printMessage = "There's nothing left to find in this town.";
+        }
+        townTreasure = null;
+    }
 
     public void digForGold() {
         if (!hasBeenDug) {

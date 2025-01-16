@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Hunter Class<br /><br />
  * This class represents the treasure hunter character (the player) in the Treasure Hunt game.
@@ -9,6 +11,7 @@ public class Hunter {
     private String hunterName;
     private String[] kit;
     private int gold;
+    private String[] treasureInv;
 
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
@@ -24,6 +27,7 @@ public class Hunter {
             kit = new String[7];
         }
         gold = startingGold;
+        treasureInv = new String[3];
     }
 
     //Accessors
@@ -110,6 +114,17 @@ public class Hunter {
         }
         return false;
     }
+    public boolean addTreasure(String treasure) {
+        if (Objects.equals(treasure, "dust")){
+            return false;
+        }
+        else if (!hasTreasureAlready(treasure)) {
+            int idx = emptyPositionInTreasure();
+            treasureInv[idx] = treasure;
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Checks if the kit Array has the specified item.
@@ -121,6 +136,14 @@ public class Hunter {
         for (String tmpItem : kit) {
             if (item.equals(tmpItem)) {
                 // early return
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean hasTreasureAlready(String treasure) {
+        for (String tmpTreasure : treasureInv ) {
+            if (treasure.equals(treasureInv)) {
                 return true;
             }
         }
@@ -144,6 +167,16 @@ public class Hunter {
         }
         return Colors.PURPLE + printableKit + Colors.RESET;
     }
+    public String getTreasureInv() {
+        String printableTreasureInv = "";
+        String space = " ";
+        for (String treasure : treasureInv) {
+            if (treasure != null) {
+                printableTreasureInv += treasure + space;
+            }
+        }
+        return Colors.YELLOW + printableTreasureInv + Colors.RESET;
+    }
 
     /**
      * @return A string representation of the hunter.
@@ -152,6 +185,9 @@ public class Hunter {
         String str = hunterName + " has " + Colors.formatGold(gold + " gold") ;
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
+        }
+        if (!treasureInvIsEmpty()) {
+            str += " and " + getTreasureInv();
         }
         return str;
     }
@@ -172,7 +208,15 @@ public class Hunter {
         }
         return -1;
     }
-
+    private int findTreasureInTreasureInv(String treasure) {
+        for (int i = 0; i < treasureInv.length; i++) {
+            String tmpTreasure = treasureInv[i];
+            if (treasure.equals(tmpTreasure)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     /**
      * Check if the kit is empty - meaning all elements are null.
      *
@@ -180,6 +224,14 @@ public class Hunter {
      */
     private boolean kitIsEmpty() {
         for (String string : kit) {
+            if (string != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean treasureInvIsEmpty() {
+        for (String string : treasureInv){
             if (string != null) {
                 return false;
             }
@@ -195,6 +247,14 @@ public class Hunter {
     private int emptyPositionInKit() {
         for (int i = 0; i < kit.length; i++) {
             if (kit[i] == null) {
+                return i;
+            }
+        }
+        return 0;
+    }
+    private int emptyPositionInTreasure() {
+        for (int i = 0; i < treasureInv.length; i++) {
+            if (treasureInv[i] == null) {
                 return i;
             }
         }
