@@ -192,7 +192,12 @@ public class Hunter {
         }
         return str;
     }
-
+    public boolean checkWin() {
+        if (findTreasureInTreasureInv("crown") != -1 && findTreasureInTreasureInv("trophy") != -1 && findTreasureInTreasureInv("gem") != -1) {
+            return true;
+        }
+        return false;
+    }
     /**
      * Searches kit Array for the index of the specified value.
      *
