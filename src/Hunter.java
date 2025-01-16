@@ -144,6 +144,7 @@ public class Hunter {
     public boolean hasTreasureAlready(String treasure) {
         for (String tmpTreasure : treasureInv ) {
             if (treasure.equals(tmpTreasure)) {
+                System.out.println("Already has " + treasure);
                 return true;
             }
         }
@@ -190,13 +191,6 @@ public class Hunter {
             str += " and " + getTreasureInv();
         }
         return str;
-    }
-
-    public boolean checkWin() {
-        if (findTreasureInTreasureInv("crown") != -1 && findTreasureInTreasureInv("trophy") != -1 && findTreasureInTreasureInv("gem") != -1) {
-            return true;
-        }
-        return false;
     }
 
     /**
