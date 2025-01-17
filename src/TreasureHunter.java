@@ -66,7 +66,6 @@ public class TreasureHunter {
         hunter = new Hunter(name, 20);
         shop =  new Shop(100); //set to 100 for now
 
-        System.out.print("Which mode? (Easy[e], Normal [n], or Hard [h]): ");
         String hard = SCANNER.nextLine().toLowerCase();
         if (hard.equals("h")) {
             hardMode = true;
@@ -74,6 +73,7 @@ public class TreasureHunter {
             shop.setupTestMode(hunter);
         }   else if (hard.equals("e")) {
             easyMode = true;
+            hunter.changeGold(20);
         }   else if (hard.equals("test lose")) {
              // Start with low gold for testing
             hunter.changeGold(-15); // Results in 5 gold total
@@ -97,7 +97,6 @@ public class TreasureHunter {
             toughness = 0.75;
         }
         if (easyMode) {
-            hunter.changeGold(20);
             markdown = 1;
         }
 
