@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all the things a Hunter can do in town.
@@ -15,7 +17,7 @@ public class Town {
     private  boolean treasureHunted;
     private String townTreasure;
     private String lastBrawlWon;
-
+    private static OutputWindow window = new OutputWindow();
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
@@ -86,8 +88,8 @@ public class Town {
     }
     public void huntForTreasure() {
         if (townTreasure != null) {
-            System.out.println("You begin searching for treasure...");
-            System.out.println("Ah ha! You found a " + townTreasure + "!");
+            window.addTextToWindow("You begin searching for treasure...", Color.black);
+            window.addTextToWindow("Ah ha! You found a " + townTreasure + "!", Color.black);
             hunter.addTreasure(townTreasure);
             printMessage = "You found a " + townTreasure + "!";
         } else {
@@ -107,10 +109,10 @@ public class Town {
                     digResult(false);
                 }
             }   else {
-                System.out.println("You don't got no shovel! What're ya gonna do claw yur way to gold?!");
+                window.addTextToWindow("You don't got no shovel! What're ya gonna do claw yur way to gold?!" , Color.YELLOW);
             }
         }   else {
-            System.out.println("You've dug this place bone dry!!! Go dig elsewhere!!!");
+            window.addTextToWindow("You've dug this place bone dry!!! Go dig elsewhere!!!", Color.red);
         }
     }
 
@@ -188,8 +190,8 @@ public class Town {
     public boolean checkGameOver() {
         // Check if game is over due to negative gold
         if (hunter.getGold() < 0) {
-            System.out.println(Colors.RED + "GAME OVER!");
-            System.out.println("You lost a brawl and couldn't pay your debt." + Colors.RESET);
+            window.addTextToWindow(Colors.RED + "GAME OVER!", Color.red);
+            window.addTextToWindow("You lost a brawl and couldn't pay your debt." + Colors.RESET, Color.black);
             return true;
         }
         return false;
@@ -257,10 +259,10 @@ public class Town {
     private void digResult(boolean struckGold) {
         if (struckGold) {
             int goldAmt  = (int) (Math.random() * 20) + 1;
-            System.out.println("You dug up " + Colors.formatGold(goldAmt + " gold!"));
+            window.addTextToWindow("You dug up " + Colors.formatGold(goldAmt + " gold!"), Color.black);
             hunter.changeGold(goldAmt);
         }   else {
-            System.out.println("You dug but found only dirt.");
+            window.addTextToWindow("You dug but found only dirt.", Color.black);
         }
     }
 }

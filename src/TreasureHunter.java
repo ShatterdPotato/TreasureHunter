@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 
 /**
@@ -19,6 +20,8 @@ public class TreasureHunter {
     private boolean hardMode;
     private static boolean easyMode;
     private static boolean samuraiMode;
+    private static OutputWindow window = new OutputWindow();
+
 
     /**
      * Constructs the Treasure Hunter game.
@@ -51,10 +54,13 @@ public class TreasureHunter {
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
     private void welcomePlayer() {
-        System.out.println("Welcome to TREASURE HUNTER!");
-        System.out.println("Going hunting for the big treasure, eh?");
-        System.out.print("What's your name, Hunter? ");
+        window.addTextToWindow("Welcome to TREASURE HUNTER!", Color.black);
+        window.addTextToWindow("Going hunting for the big treasure, eh?",Color.black);
+        window.addTextToWindow("What's your name, Hunter?", Color.black);
         String name = SCANNER.nextLine().toLowerCase();
+        Color orange = new Color(240, 80, 20); // RGB!
+        window.addTextToWindow("Which mode? (Easy[e], Normal [n], or Hard [h]): ", orange);
+        
 
         // set hunter instance variable
         hunter = new Hunter(name, 20);
@@ -120,21 +126,19 @@ public class TreasureHunter {
     private void showMenu() {
         String choice = "";
         while (!choice.equals("x") && !currentTown.checkGameOver() && !hunter.checkWin()) {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter.infoString());
-            System.out.println(currentTown.infoString());
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(D)ig for gold.");
-            System.out.println("(E)xplore surrounding terrain.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println("(H)unt for treasure.");
-            System.out.println();
-            System.out.print("What's your next move? ");
+            window.clear();
+            window.addTextToWindow(currentTown.getLatestNews(), Color.black);
+            window.addTextToWindow(hunter.infoString(), Color.black);
+            window.addTextToWindow(currentTown.infoString(), Color.black);
+            window.addTextToWindow("\n(B)uy something at the shop.", Color.black);
+            window.addTextToWindow("(S)ell something at the shop.", Color.black);
+            window.addTextToWindow("(D)ig for gold.", Color.black);
+            window.addTextToWindow("(E)xplore surrounding terrain.", Color.black);
+            window.addTextToWindow("(M)ove on to a different town.", Color.black);
+            window.addTextToWindow("(L)ook for trouble!", Color.black);
+            window.addTextToWindow("Give up the hunt and e(X)it.", Color.black);
+            window.addTextToWindow("(H)unt for treasure.", Color.black);
+            window.addTextToWindow("\nWhat's your next move? ", Color.black);
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
         }
@@ -148,27 +152,27 @@ public class TreasureHunter {
         if (choice.equals("b") || choice.equals("s")) {
             currentTown.enterShop(choice);
         } else if (choice.equals("e")) {
-            System.out.println(currentTown.getTerrain().infoString());
+            window.addTextToWindow(currentTown.getTerrain().infoString(), Color.black);
             currentTown.updateLatestNews();
         } else if (choice.equals("m")) {
             if (currentTown.leaveTown()) {
                 // This town is going away so print its news ahead of time.
-                System.out.println(currentTown.getLatestNews());
+                window.addTextToWindow(currentTown.getLatestNews(), Color.black);
                 enterTown();
             }
         } else if (choice.equals("l")) {
             currentTown.lookForTrouble();
         } else if (choice.equals("x")) {
-            System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+            window.addTextToWindow("Fare thee well, " + hunter.getHunterName() + "!",Color.black);
         } else if (choice.equals("h")) {
             currentTown.huntForTreasure();
             if (hunter.checkWin()) {
-                System.out.println("Congratulations, you have found the last of the three treasures! You win!!");
+                window.addTextToWindow("Congratulations, you have found the last of the three treasures! You win!!", Color.CYAN);
             }
         } else if (choice.equals("d")) {
             currentTown.digForGold();
         }  else {
-            System.out.println("Yikes! That's an invalid option! Try again.");
+            window.addTextToWindow("Yikes! That's an invalid option! Try again.", Color.red);
         }
     }
 }

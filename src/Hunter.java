@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ public class Hunter {
     private String[] kit;
     private int gold;
     private String[] treasureInv;
-
+    private static OutputWindow window = new OutputWindow();
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
@@ -144,7 +145,7 @@ public class Hunter {
     public boolean hasTreasureAlready(String treasure) {
         for (String tmpTreasure : treasureInv ) {
             if (treasure.equals(tmpTreasure)) {
-                System.out.println("Already has " + treasure);
+                window.addTextToWindow("Already has " + treasure, Color.yellow);
                 return true;
             }
         }
@@ -174,6 +175,9 @@ public class Hunter {
         for (String treasure : treasureInv) {
             if (treasure != null) {
                 printableTreasureInv += treasure + space;
+            }
+            else if (treasure == null){
+                printableTreasureInv += "and nothing else";
             }
         }
         return Colors.YELLOW + printableTreasureInv + Colors.RESET;
