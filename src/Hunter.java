@@ -13,7 +13,6 @@ public class Hunter {
     private String[] kit;
     private int gold;
     private String[] treasureInv;
-    private static OutputWindow window = new OutputWindow();
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
@@ -21,7 +20,7 @@ public class Hunter {
      * @param startingGold The gold the hunter starts with.
      */
     public Hunter(String hunterName, int startingGold) {
-        this.hunterName = Colors.GREEN + hunterName + Colors.RESET;
+        this.hunterName = Color.GREEN + hunterName + Color.RESET;
         if (TreasureHunter.isSamuraiMode()){
             kit = new String[8];
         } else {
@@ -145,7 +144,7 @@ public class Hunter {
     public boolean hasTreasureAlready(String treasure) {
         for (String tmpTreasure : treasureInv ) {
             if (treasure.equals(tmpTreasure)) {
-                window.addTextToWindow("Already has " + treasure, Color.yellow);
+                TreasureHunter.window.addTextToWindow("Already has " + treasure, Color.yellow);
                 return true;
             }
         }
@@ -167,7 +166,7 @@ public class Hunter {
                 printableKit += item + space;
             }
         }
-        return Colors.PURPLE + printableKit + Colors.RESET;
+        return Color.pink + printableKit + Color.RESET;
     }
     public String getTreasureInv() {
         String printableTreasureInv = "";
@@ -180,7 +179,7 @@ public class Hunter {
                 printableTreasureInv += "and nothing else";
             }
         }
-        return Colors.YELLOW + printableTreasureInv + Colors.RESET;
+        return Color.YELLOW + printableTreasureInv;
     }
 
     /**

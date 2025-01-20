@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Colors {
 
     public static final String RESET = "\033[0m"; // Reset
@@ -19,6 +21,6 @@ public class Colors {
     public static final String WHITE = "\033[0;37m";  // WHITE
 
     public static String formatGold(String str) {
-        return Colors.YELLOW + str + Colors.RESET;
+        return Color.YELLOW + str;
     }
 }

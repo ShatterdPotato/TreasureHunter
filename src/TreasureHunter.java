@@ -20,7 +20,7 @@ public class TreasureHunter {
     private boolean hardMode;
     private static boolean easyMode;
     private static boolean samuraiMode;
-    private static OutputWindow window = new OutputWindow();
+    public static OutputWindow window = new OutputWindow();
 
 
     /**
@@ -58,6 +58,7 @@ public class TreasureHunter {
         window.addTextToWindow("Going hunting for the big treasure, eh?",Color.black);
         window.addTextToWindow("What's your name, Hunter?", Color.black);
         String name = SCANNER.nextLine().toLowerCase();
+        window.addTextToWindow("Welcome " + name + "!", Color.black);
         Color orange = new Color(240, 80, 20); // RGB!
         window.addTextToWindow("Which mode? (Easy[e], Normal [n], or Hard [h]): ", orange);
         
